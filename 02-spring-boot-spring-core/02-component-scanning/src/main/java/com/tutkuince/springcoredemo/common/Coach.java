@@ -1,4 +1,4 @@
-package com.tutkuince.util;
+package com.tutkuince.springcoredemo.common;
 
 public interface Coach {
 
