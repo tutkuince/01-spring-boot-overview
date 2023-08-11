@@ -29,6 +29,9 @@ public class DemoController {
 
     @GetMapping("check")
     public String check() {
+        // If scope is Singleton, result is true. If scope is Prototype, result is false
+        // Singleton: creates a single shared instance of the bean
+        // Prototype: creates a new bean instance for each container request
         return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
     }
 }
