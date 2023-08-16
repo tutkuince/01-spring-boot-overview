@@ -74,4 +74,10 @@ public class StudentDAOImpl implements StudentDAO {
             System.out.println("No student found for this id!");
         }
     }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        return entityManager.createQuery("DELETE FROM Student ").executeUpdate();
+    }
 }
