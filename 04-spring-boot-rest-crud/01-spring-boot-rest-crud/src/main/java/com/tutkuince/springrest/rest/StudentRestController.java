@@ -42,7 +42,6 @@ public class StudentRestController {
     // Add an exception handler using @ExceptionHanler
     @ExceptionHandler
     public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException ex) {
-
         // create a StudentErrorResponse
         StudentErrorResponse error = new StudentErrorResponse();
         error.setStatus(HttpStatus.NOT_FOUND.value());
@@ -50,7 +49,6 @@ public class StudentRestController {
         error.setTimeStamp(System.currentTimeMillis());
 
         // Return ResponseEntity
-
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
