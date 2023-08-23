@@ -20,7 +20,7 @@
                 th:errors="*{lastName}" class="error"></span>
         <br/><br/>
         <label for="freePasses">Free Passes</label>
-        <input type="number" id="freePasses" th:field="*{freePasses}"/>
+        <input type="text" id="freePasses" th:field="*{freePasses}"/>
         <span th:if="${#fields.hasErrors('freePasses')}" th:errors="*{freePasses}" class="error"></span>
         <br/><br/>
         <label for="postalCode">Postal Code</label>
