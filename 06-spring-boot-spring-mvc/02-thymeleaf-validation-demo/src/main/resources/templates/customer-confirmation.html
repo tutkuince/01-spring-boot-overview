@@ -6,5 +6,6 @@
 </head>
 <body>
     <p>The customer is confirmed: <span th:text="${customer.firstName} + ' ' + ${customer.lastName}"></span></p>
+    <p>For this customer there is/are <span th:text="${customer.freePasses}"></span> free pass(es)</p>
 </body>
 </html>
