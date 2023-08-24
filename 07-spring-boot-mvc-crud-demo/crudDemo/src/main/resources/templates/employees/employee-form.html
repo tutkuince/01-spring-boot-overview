@@ -11,6 +11,7 @@
     </header>
     <main>
         <form th:action="@{/employees/save}" th:object="${employee}" method="POST">
+            <input type="hidden" th:field="*{id}">
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
                 <input
