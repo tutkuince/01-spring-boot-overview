@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class InstructorServiceImpl implements InstructorService {
 
@@ -20,5 +22,17 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public void save(Instructor instructor) {
         instructorRepository.save(instructor);
+    }
+
+    @Override
+    public Instructor findById(int id) {
+        Optional<Instructor> optionalInstructor = instructorRepository.findById(id);
+        Instructor instructor = null;
+        if (optionalInstructor.isPresent()) {
+            instructor = optionalInstructor.get();
+        } else {
+            throw new RuntimeException("No Instructor found by Id: " + id);
+        }
+        return instructor;
     }
 }

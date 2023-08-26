@@ -18,8 +18,19 @@ public class AdvancedJpaApplication {
     @Bean
     public CommandLineRunner commandLineRunner(InstructorService instructorService) {
         return runner -> {
-            createInstructor(instructorService);
+            // createInstructor(instructorService);
+            findInstructor(instructorService);
         };
+    }
+
+    private void findInstructor(InstructorService instructorService) {
+        int id = 1;
+        System.out.println("Finding instructor id: " + id);
+
+        Instructor instructor = instructorService.findById(id);
+
+        System.out.println("Instructor: " + instructor);
+        System.out.println("The Associate InstructorDetail: " + instructor.getInstructorDetail());
     }
 
     private void createInstructor(InstructorService instructorService) {
