@@ -2,6 +2,7 @@ package com.tutkuince.springboot.advancedjpa;
 
 import com.tutkuince.springboot.advancedjpa.entity.Instructor;
 import com.tutkuince.springboot.advancedjpa.entity.InstructorDetail;
+import com.tutkuince.springboot.advancedjpa.service.InstructorDetailService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,12 +17,22 @@ public class AdvancedJpaApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
+    public CommandLineRunner commandLineRunner(InstructorService instructorService, InstructorDetailService instructorDetailService) {
         return runner -> {
             // createInstructor(instructorService);
             // findInstructor(instructorService);
-            deleteInstructorById(instructorService);
+            // deleteInstructorById(instructorService);
+            findInstructorDetail(instructorDetailService);
         };
+    }
+
+    private void findInstructorDetail(InstructorDetailService instructorDetailService) {
+        int id = 1;
+        InstructorDetail instructorDetail = instructorDetailService.findById(1);
+        System.out.println("InstructorDetail: " + instructorDetail);
+        System.out.println("Associated Instructor: " + instructorDetail.getInstructor());
+        System.out.println("Done!");
+
     }
 
     private void deleteInstructorById(InstructorService instructorService) {

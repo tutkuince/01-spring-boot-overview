@@ -24,7 +24,6 @@ public class InstructorDetail {
 
     @Column(name = "hobby")
     private String hobby;
-
     @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
     private Instructor instructor;
 
@@ -66,7 +65,6 @@ public class InstructorDetail {
                 "id=" + id +
                 ", youtubeChannel='" + youtubeChannel + '\'' +
                 ", hobby='" + hobby + '\'' +
-                ", instructor=" + instructor +
                 '}';
     }
 }
