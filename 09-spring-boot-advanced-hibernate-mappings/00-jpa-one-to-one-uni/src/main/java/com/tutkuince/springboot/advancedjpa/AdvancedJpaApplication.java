@@ -19,8 +19,18 @@ public class AdvancedJpaApplication {
     public CommandLineRunner commandLineRunner(InstructorService instructorService) {
         return runner -> {
             // createInstructor(instructorService);
-            findInstructor(instructorService);
+            // findInstructor(instructorService);
+            deleteInstructorById(instructorService);
         };
+    }
+
+    private void deleteInstructorById(InstructorService instructorService) {
+        int id = 1;
+        System.out.println("Deleting instructor id: " + instructorService);
+
+        instructorService.deleteById(id);
+
+        System.out.println("Done!");
     }
 
     private void findInstructor(InstructorService instructorService) {

@@ -35,4 +35,10 @@ public class InstructorServiceImpl implements InstructorService {
         }
         return instructor;
     }
+
+    @Transactional
+    @Override
+    public void deleteById(int id) {
+        instructorRepository.deleteById(id);
+    }
 }
