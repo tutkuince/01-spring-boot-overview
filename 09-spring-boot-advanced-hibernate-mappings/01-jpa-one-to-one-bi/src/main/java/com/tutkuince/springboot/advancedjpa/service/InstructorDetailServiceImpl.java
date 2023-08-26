@@ -4,6 +4,7 @@ import com.tutkuince.springboot.advancedjpa.dao.InstructorDetailRepository;
 import com.tutkuince.springboot.advancedjpa.entity.InstructorDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class InstructorDetailServiceImpl implements InstructorDetailService {
     }
 
     @Override
+    @Transactional
     public void save(InstructorDetail instructorDetail) {
         instructorDetailRepository.save(instructorDetail);
     }
@@ -35,6 +37,7 @@ public class InstructorDetailServiceImpl implements InstructorDetailService {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
         instructorDetailRepository.deleteById(id);
     }
