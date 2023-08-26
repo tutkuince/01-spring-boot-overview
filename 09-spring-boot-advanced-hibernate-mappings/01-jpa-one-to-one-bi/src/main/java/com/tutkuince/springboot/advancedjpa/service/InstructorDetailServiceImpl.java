@@ -27,7 +27,7 @@ public class InstructorDetailServiceImpl implements InstructorDetailService {
     @Override
     public InstructorDetail findById(int id) {
         Optional<InstructorDetail> optionalInstructorDetail = instructorDetailRepository.findById(id);
-        InstructorDetail instructorDetail = null;
+        InstructorDetail instructorDetail;
         if (optionalInstructorDetail.isPresent()) {
             instructorDetail = optionalInstructorDetail.get();
         } else {
@@ -39,6 +39,12 @@ public class InstructorDetailServiceImpl implements InstructorDetailService {
     @Override
     @Transactional
     public void deleteById(int id) {
+        InstructorDetail instructorDetail = findById(id);
+
+        // remove the associated object reference
+        // break bidirectional link
+        instructorDetail.getInstructor().setInstructorDetail(null);
+
         instructorDetailRepository.deleteById(id);
     }
 }

@@ -22,8 +22,16 @@ public class AdvancedJpaApplication {
             // createInstructor(instructorService);
             // findInstructor(instructorService);
             // deleteInstructorById(instructorService);
-            findInstructorDetail(instructorDetailService);
+            // findInstructorDetail(instructorDetailService);
+            deleteInstructorDetailById(instructorDetailService);
         };
+    }
+
+    private void deleteInstructorDetailById(InstructorDetailService instructorDetailService) {
+        int id = 1;
+        System.out.println("Deleting InstructorDetail id: " + id);
+        instructorDetailService.deleteById(id);
+        System.out.println("Done!");
     }
 
     private void findInstructorDetail(InstructorDetailService instructorDetailService) {
