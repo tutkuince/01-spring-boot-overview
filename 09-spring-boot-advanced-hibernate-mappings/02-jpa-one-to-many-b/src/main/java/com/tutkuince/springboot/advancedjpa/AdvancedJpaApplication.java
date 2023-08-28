@@ -3,6 +3,7 @@ package com.tutkuince.springboot.advancedjpa;
 import com.tutkuince.springboot.advancedjpa.entity.Course;
 import com.tutkuince.springboot.advancedjpa.entity.Instructor;
 import com.tutkuince.springboot.advancedjpa.entity.InstructorDetail;
+import com.tutkuince.springboot.advancedjpa.service.CourseService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorDetailService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorService;
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +22,7 @@ public class AdvancedJpaApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(InstructorService instructorService, InstructorDetailService instructorDetailService) {
+    public CommandLineRunner commandLineRunner(InstructorService instructorService, InstructorDetailService instructorDetailService, CourseService courseService) {
         return runner -> {
             // createInstructor(instructorService);
             // findInstructor(instructorService);
@@ -30,9 +31,27 @@ public class AdvancedJpaApplication {
             // deleteInstructorDetailById(instructorDetailService);
             // create Instructor with courses
             // createInstructorWithCourses(instructorService);
-            findInstructorWithCourses(instructorService);
+            // findInstructorWithCourses(instructorService);
+            findCoursesForInstructor(instructorService, courseService);
         };
     }
+
+    private void findCoursesForInstructor(InstructorService instructorService, CourseService courseService) {
+        int id = 1;
+        System.out.println("Finding the instructor id: " + id);
+
+        Instructor instructor = instructorService.findById(id);
+        System.out.println("Instructor: " + instructor);
+
+        System.out.println("Finding Courses for Instructor Id: " + id);
+        List<Course> courseList = courseService.findCourseListByInstructorId(instructor.getId());
+
+        // Associate the objects
+        instructor.setCourses(courseList);
+
+        System.out.println("The Associate Courses: " + instructor.getCourses());
+    }
+
 
     private void findInstructorWithCourses(InstructorService instructorService) {
         int id = 1;
