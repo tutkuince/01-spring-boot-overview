@@ -3,6 +3,7 @@ package com.tutkuince.springboot.advancedjpa;
 import com.tutkuince.springboot.advancedjpa.entity.Course;
 import com.tutkuince.springboot.advancedjpa.entity.Instructor;
 import com.tutkuince.springboot.advancedjpa.entity.InstructorDetail;
+import com.tutkuince.springboot.advancedjpa.entity.Review;
 import com.tutkuince.springboot.advancedjpa.service.CourseService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorDetailService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorService;
@@ -36,8 +37,22 @@ public class AdvancedJpaApplication {
             // findInstructorByIdJoinFetch(instructorService);
             // updateInstructor(instructorService);
             // deleteInstructorById(instructorService);
-            deleteCourseById(courseService);
+            // deleteCourseById(courseService);
+            createCourseAndReview(courseService);
         };
+    }
+
+    private void createCourseAndReview(CourseService courseService) {
+        Course course = new Course("Database Design");
+        course.addReview(new Review("Great course... Love it!"));
+        course.addReview(new Review("Cool course, job well done."));
+        course.addReview(new Review("What a dumb course, you are an idiot"));
+
+        System.out.println("Saving the course");
+        System.out.println(course);
+        System.out.println(course.getReviews());
+
+        courseService.save(course);
     }
 
     private void deleteCourseById(CourseService courseService) {
