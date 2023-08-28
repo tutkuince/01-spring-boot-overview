@@ -41,4 +41,9 @@ public class InstructorServiceImpl implements InstructorService {
     public void deleteById(int id) {
         instructorRepository.deleteById(id);
     }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int id) {
+        return instructorRepository.findInstructorByIdJoinFetch(id);
+    }
 }
