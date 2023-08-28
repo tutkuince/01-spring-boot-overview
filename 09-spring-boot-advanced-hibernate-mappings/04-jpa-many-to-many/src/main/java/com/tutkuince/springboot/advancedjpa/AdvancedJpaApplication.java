@@ -32,7 +32,11 @@ public class AdvancedJpaApplication {
     }
 
     private void deleteCourse(CourseService courseService) {
-        
+        int id = 7;
+        System.out.println("Deleting Course Id: " + id);
+
+        courseService.deleteById(id);
+        System.out.println("Done!");
     }
 
     private void addMoreCoursesForStudent(StudentService studentService) {
