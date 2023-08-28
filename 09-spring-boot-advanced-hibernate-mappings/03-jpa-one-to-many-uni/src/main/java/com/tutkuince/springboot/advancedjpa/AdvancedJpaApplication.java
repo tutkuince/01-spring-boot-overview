@@ -38,8 +38,16 @@ public class AdvancedJpaApplication {
             // updateInstructor(instructorService);
             // deleteInstructorById(instructorService);
             // deleteCourseById(courseService);
-            createCourseAndReview(courseService);
+            // createCourseAndReview(courseService);
+            retrieveCourseAndReviews(courseService);
         };
+    }
+
+    private void retrieveCourseAndReviews(CourseService courseService) {
+        int id = 4;
+        Course course = courseService.findCourseAndReviewsByCourseId(id);
+        System.out.println(course);
+        System.out.println(course.getReviews());
     }
 
     private void createCourseAndReview(CourseService courseService) {
