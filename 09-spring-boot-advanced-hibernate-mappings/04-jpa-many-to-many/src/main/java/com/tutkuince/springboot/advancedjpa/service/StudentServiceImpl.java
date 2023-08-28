@@ -4,6 +4,7 @@ import com.tutkuince.springboot.advancedjpa.dao.StudentRepository;
 import com.tutkuince.springboot.advancedjpa.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -20,7 +21,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public void save(Student student) {
         studentRepository.save(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudentById(int id) {
+        studentRepository.deleteById(id);
     }
 }
