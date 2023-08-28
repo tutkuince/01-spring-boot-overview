@@ -50,7 +50,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course findCourseAndReviewsByCourseId(int id) {
-        Course courseAndReviewsByCourseId = courseRepository.findCourseAndReviewsByCourseId(id);
         return courseRepository.findCourseAndReviewsByCourseId(id);
+    }
+
+    @Override
+    public Course findCourseAndStudentsByCourseId(int id) {
+        return courseRepository.findCourseAndStudentsByCourseId(id);
     }
 }

@@ -1,9 +1,6 @@
 package com.tutkuince.springboot.advancedjpa;
 
-import com.tutkuince.springboot.advancedjpa.entity.Course;
-import com.tutkuince.springboot.advancedjpa.entity.Instructor;
-import com.tutkuince.springboot.advancedjpa.entity.InstructorDetail;
-import com.tutkuince.springboot.advancedjpa.entity.Review;
+import com.tutkuince.springboot.advancedjpa.entity.*;
 import com.tutkuince.springboot.advancedjpa.service.CourseService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorDetailService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorService;
@@ -25,22 +22,35 @@ public class AdvancedJpaApplication {
     @Bean
     public CommandLineRunner commandLineRunner(InstructorService instructorService, InstructorDetailService instructorDetailService, CourseService courseService) {
         return runner -> {
-            // createInstructor(instructorService);
-            // findInstructor(instructorService);
-            // deleteInstructorById(instructorService);
-            // findInstructorDetail(instructorDetailService);
-            // deleteInstructorDetailById(instructorDetailService);
-            // create Instructor with courses
-            // createInstructorWithCourses(instructorService);
-            // findInstructorWithCourses(instructorService);
-            // findCoursesForInstructor(instructorService, courseService);
-            // findInstructorByIdJoinFetch(instructorService);
-            // updateInstructor(instructorService);
-            // deleteInstructorById(instructorService);
-            // deleteCourseById(courseService);
-            createCourseAndReview(courseService);
-            // retrieveCourseAndReviews(courseService);
+            // createCourseAndStudent(courseService);
+            findCourseAndStudents(courseService);
         };
+    }
+
+    private void findCourseAndStudents(CourseService courseService) {
+        int id = 5;
+        Course course = courseService.findCourseAndStudentsByCourseId(id);
+        System.out.println("Loaded Course: " + course);
+        System.out.println("Associated Students: " + course.getStudents());
+        System.out.println("Done");
+    }
+
+    private void createCourseAndStudent(CourseService courseService) {
+        // create a course
+        Course course = new Course("Mastering Spring Data JPA");
+        // create the students
+        Student student1 = new Student("Cigdem", "Ince", "cido@ince.com");
+        Student student2 = new Student("Gizem", "Sen", "gizo@sen.com");
+
+        // add students to the course
+        course.addStudent(student1);
+        course.addStudent(student2);
+
+        // save the course and associated students
+        System.out.println("Saving the Course: " + course);
+        System.out.println("Associated Students: " + course.getStudents());
+        courseService.save(course);
+        System.out.println("Done!");
     }
 
     private void retrieveCourseAndReviews(CourseService courseService) {
