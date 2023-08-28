@@ -33,8 +33,22 @@ public class AdvancedJpaApplication {
             // createInstructorWithCourses(instructorService);
             // findInstructorWithCourses(instructorService);
             // findCoursesForInstructor(instructorService, courseService);
-            findInstructorByIdJoinFetch(instructorService);
+            // findInstructorByIdJoinFetch(instructorService);
+            updateInstructor(instructorService);
         };
+    }
+
+    private void updateInstructor(InstructorService instructorService) {
+        int id = 1;
+
+        System.out.println("Finding Instructor Id: " + id);
+        Instructor updatableInstructor = instructorService.findById(id);
+
+        System.out.println("Updating Instructor Id: " + id);
+        updatableInstructor.setLastName("Master");
+
+        instructorService.save(updatableInstructor);
+        System.out.println("Done!");
     }
 
     private void findInstructorByIdJoinFetch(InstructorService instructorService) {
