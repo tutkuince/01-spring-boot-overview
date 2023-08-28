@@ -35,8 +35,18 @@ public class AdvancedJpaApplication {
             // findCoursesForInstructor(instructorService, courseService);
             // findInstructorByIdJoinFetch(instructorService);
             // updateInstructor(instructorService);
-            deleteInstructorById(instructorService);
+            // deleteInstructorById(instructorService);
+            deleteCourseById(courseService);
         };
+    }
+
+    private void deleteCourseById(CourseService courseService) {
+        int id = 1;
+        System.out.println("Deleting course id: " + id);
+
+        courseService.deleteById(id);
+
+        System.out.println("Done!");
     }
 
     private void updateInstructor(InstructorService instructorService) {
