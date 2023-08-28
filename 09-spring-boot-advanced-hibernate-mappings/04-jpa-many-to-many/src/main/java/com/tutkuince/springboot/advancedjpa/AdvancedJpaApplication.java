@@ -4,6 +4,7 @@ import com.tutkuince.springboot.advancedjpa.entity.*;
 import com.tutkuince.springboot.advancedjpa.service.CourseService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorDetailService;
 import com.tutkuince.springboot.advancedjpa.service.InstructorService;
+import com.tutkuince.springboot.advancedjpa.service.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,11 +21,21 @@ public class AdvancedJpaApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(InstructorService instructorService, InstructorDetailService instructorDetailService, CourseService courseService) {
+    public CommandLineRunner commandLineRunner(CourseService courseService, StudentService studentService) {
         return runner -> {
             // createCourseAndStudent(courseService);
-            findCourseAndStudents(courseService);
+            // findCourseAndStudents(courseService);
+            findStudentAndCourses(studentService);
         };
+    }
+
+    private void findStudentAndCourses(StudentService studentService) {
+        int id = 1;
+        Student student = studentService.findStudentAndCoursesByStudentId(id);
+
+        System.out.println("Loaded Student: " + student);
+        System.out.println("Associated Courses: " + student.getCourses());
+        System.out.println("Done");
     }
 
     private void findCourseAndStudents(CourseService courseService) {
