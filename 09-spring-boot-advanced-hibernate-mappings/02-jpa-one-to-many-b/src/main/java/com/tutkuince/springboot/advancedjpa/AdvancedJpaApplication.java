@@ -1,5 +1,6 @@
 package com.tutkuince.springboot.advancedjpa;
 
+import com.tutkuince.springboot.advancedjpa.entity.Course;
 import com.tutkuince.springboot.advancedjpa.entity.Instructor;
 import com.tutkuince.springboot.advancedjpa.entity.InstructorDetail;
 import com.tutkuince.springboot.advancedjpa.service.InstructorDetailService;
@@ -8,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class AdvancedJpaApplication {
@@ -23,8 +27,39 @@ public class AdvancedJpaApplication {
             // findInstructor(instructorService);
             // deleteInstructorById(instructorService);
             // findInstructorDetail(instructorDetailService);
-            deleteInstructorDetailById(instructorDetailService);
+            // deleteInstructorDetailById(instructorDetailService);
+            // create Instructor with courses
+            createInstructorWithCourses(instructorService);
         };
+    }
+
+    private void createInstructorWithCourses(InstructorService instructorService) {
+        // create the instructor
+        Instructor instructor = new Instructor("Tutku", "Ince", "tutku@tutkuince.com");
+
+        // create the instructor detail
+        InstructorDetail instructorDetail = new InstructorDetail("OCPJD TV", "Playing Guitar");
+
+        // associate the objects
+        instructor.setInstructorDetail(instructorDetail);
+
+        // create some Courses
+        List<Course> courseList = new ArrayList<>();
+        Course course1 = new Course("Spring Boot");
+        Course course2 = new Course("Hibernate");
+        Course course3 = new Course("Aspect Oriented Programming");
+
+        // add courses to instructor
+        instructor.addCourse(course1);
+        instructor.addCourse(course2);
+        instructor.addCourse(course3);
+
+        // Save the instructor
+        // Note: This will also save the courses because of CascadeType.PERSIST
+        System.out.println("Saving instructor: " + instructor);
+        System.out.println("The courses: " + instructor.getCourses());
+        instructorService.save(instructor);
+        System.out.println("Done!");
     }
 
     private void deleteInstructorDetailById(InstructorDetailService instructorDetailService) {
