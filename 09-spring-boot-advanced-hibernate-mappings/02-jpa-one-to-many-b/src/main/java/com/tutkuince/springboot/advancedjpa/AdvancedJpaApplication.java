@@ -34,7 +34,8 @@ public class AdvancedJpaApplication {
             // findInstructorWithCourses(instructorService);
             // findCoursesForInstructor(instructorService, courseService);
             // findInstructorByIdJoinFetch(instructorService);
-            updateInstructor(instructorService);
+            // updateInstructor(instructorService);
+            deleteInstructorById(instructorService);
         };
     }
 

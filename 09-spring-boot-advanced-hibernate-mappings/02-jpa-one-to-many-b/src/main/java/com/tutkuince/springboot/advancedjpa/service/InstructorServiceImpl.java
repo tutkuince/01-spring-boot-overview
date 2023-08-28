@@ -1,11 +1,13 @@
 package com.tutkuince.springboot.advancedjpa.service;
 
 import com.tutkuince.springboot.advancedjpa.dao.InstructorRepository;
+import com.tutkuince.springboot.advancedjpa.entity.Course;
 import com.tutkuince.springboot.advancedjpa.entity.Instructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,7 +41,15 @@ public class InstructorServiceImpl implements InstructorService {
     @Transactional
     @Override
     public void deleteById(int id) {
-        instructorRepository.deleteById(id);
+        Instructor instructor = findById(id);
+
+        List<Course> courses = instructor.getCourses();
+
+        // break association of all courses for the instructor
+        for (Course course : courses) {
+            course.setInstructor(null);
+        }
+        instructorRepository.deleteById(instructor.getId());
     }
 
     @Override
