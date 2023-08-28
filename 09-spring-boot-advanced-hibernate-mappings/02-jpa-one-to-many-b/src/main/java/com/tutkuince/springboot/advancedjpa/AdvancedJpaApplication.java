@@ -29,8 +29,19 @@ public class AdvancedJpaApplication {
             // findInstructorDetail(instructorDetailService);
             // deleteInstructorDetailById(instructorDetailService);
             // create Instructor with courses
-            createInstructorWithCourses(instructorService);
+            // createInstructorWithCourses(instructorService);
+            findInstructorWithCourses(instructorService);
         };
+    }
+
+    private void findInstructorWithCourses(InstructorService instructorService) {
+        int id = 1;
+        System.out.println("Finding the instructor id: " + id);
+
+        Instructor instructor = instructorService.findById(id);
+        System.out.println("Instructor: " + instructor);
+        System.out.println("The Associated courses: " + instructor.getCourses());
+        System.out.println("Done!");
     }
 
     private void createInstructorWithCourses(InstructorService instructorService) {

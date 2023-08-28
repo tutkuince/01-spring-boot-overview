@@ -4,6 +4,7 @@ import com.tutkuince.springboot.advancedjpa.dao.CourseRepository;
 import com.tutkuince.springboot.advancedjpa.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public void save(Course course) {
         courseRepository.save(course);
     }
@@ -35,6 +37,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
         courseRepository.deleteById(id);
     }
