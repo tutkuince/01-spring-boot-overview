@@ -27,8 +27,16 @@ public class AdvancedJpaApplication {
             // findCourseAndStudents(courseService);
             // findStudentAndCourses(studentService);
             // addMoreCoursesForStudent(studentService);
-            deleteCourse(courseService);
+            // deleteCourse(courseService);
+            deleteStudent(studentService);
         };
+    }
+
+    private void deleteStudent(StudentService studentService) {
+        int id = 2;
+        System.out.println("Deleting Student Id: " + id);
+        studentService.deleteStudentById(id);
+        System.out.println("Done!");
     }
 
     private void deleteCourse(CourseService courseService) {
