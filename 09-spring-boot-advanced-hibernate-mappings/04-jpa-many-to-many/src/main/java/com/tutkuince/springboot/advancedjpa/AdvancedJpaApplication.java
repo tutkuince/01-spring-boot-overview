@@ -25,8 +25,31 @@ public class AdvancedJpaApplication {
         return runner -> {
             // createCourseAndStudent(courseService);
             // findCourseAndStudents(courseService);
-            findStudentAndCourses(studentService);
+            // findStudentAndCourses(studentService);
+            // addMoreCoursesForStudent(studentService);
+            deleteCourse(courseService);
         };
+    }
+
+    private void deleteCourse(CourseService courseService) {
+        
+    }
+
+    private void addMoreCoursesForStudent(StudentService studentService) {
+        int id = 1;
+        Student student = studentService.findStudentAndCoursesByStudentId(id);
+
+        Course c1 = new Course("Mastering German Language");
+        Course c2 = new Course("Mastering at Cooking");
+
+        student.addCourse(c1);
+        student.addCourse(c2);
+
+        System.out.println("Saving Student: " + student);
+        System.out.println("Associated Courses: " + student.getCourses());
+
+        studentService.save(student);
+        System.out.println("Done!");
     }
 
     private void findStudentAndCourses(StudentService studentService) {
