@@ -2,6 +2,7 @@ package com.tutkuince.springboot.aopdemo;
 
 import com.tutkuince.springboot.aopdemo.dao.AccountDao;
 import com.tutkuince.springboot.aopdemo.dao.MembershipDao;
+import com.tutkuince.springboot.aopdemo.entity.Account;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +24,7 @@ public class AopDemoApplication {
 
     private void demoTheBeforeAdvice(AccountDao accountDao, MembershipDao membershipDao) {
         // call the business method
-        accountDao.addAccount();
+        accountDao.addAccount(new Account("Tutku Ince", "Master"));
 
         // call the membership business method
         membershipDao.addSillyMember();
