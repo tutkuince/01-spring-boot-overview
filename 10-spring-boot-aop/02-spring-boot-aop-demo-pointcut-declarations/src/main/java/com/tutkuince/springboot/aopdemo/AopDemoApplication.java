@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication(exclude = JmxAutoConfiguration.class)
 public class AopDemoApplication {
 
@@ -19,8 +21,20 @@ public class AopDemoApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AccountDao accountDao, MembershipDao membershipDao) {
         return runner -> {
-            demoTheBeforeAdvice(accountDao, membershipDao);
+            // demoTheBeforeAdvice(accountDao, membershipDao);
+            demoTheAfterReturningAdvice(accountDao);
         };
+    }
+
+    private void demoTheAfterReturningAdvice(AccountDao accountDao) {
+        // call method to find the accounts
+        List<Account> accountList = accountDao.findAccounts();
+
+        // display the accounts
+        System.out.println("\n\nMain Program: demoTheAfterReturningAdvice");
+        System.out.println("-----");
+        System.out.println(accountList);
+        System.out.println("\n");
     }
 
     private void demoTheBeforeAdvice(AccountDao accountDao, MembershipDao membershipDao) {

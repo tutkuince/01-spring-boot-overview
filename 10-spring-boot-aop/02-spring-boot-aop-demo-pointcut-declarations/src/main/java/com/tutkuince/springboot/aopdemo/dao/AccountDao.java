@@ -2,7 +2,11 @@ package com.tutkuince.springboot.aopdemo.dao;
 
 import com.tutkuince.springboot.aopdemo.entity.Account;
 
+import java.util.List;
+
 public interface AccountDao {
+    // add a new method: findAccounts()
+    List<Account> findAccounts();
     void addAccount(Account account, boolean vipFlag);
 
     boolean doWork();
