@@ -22,13 +22,33 @@ public class AopDemoApplication {
     public CommandLineRunner commandLineRunner(AccountDao accountDao, MembershipDao membershipDao) {
         return runner -> {
             // demoTheBeforeAdvice(accountDao, membershipDao);
-            demoTheAfterReturningAdvice(accountDao);
+            // demoTheAfterReturningAdvice(accountDao);
+            demoTheAfterThrowingAdvice(accountDao);
         };
+    }
+
+    private void demoTheAfterThrowingAdvice(AccountDao accountDao) {
+        // call method to find the accounts
+        List<Account> accountList = null;
+
+        try {
+            // add a boolean flag to simulate exceptions
+            boolean tripWire = true;
+            accountList = accountDao.findAccounts(tripWire);
+        } catch (Exception e) {
+            System.out.println("\n\nMain Program: caught exception: " + e);
+        }
+
+        // display the accounts
+        System.out.println("\n\nMain Program: demoTheAfterThrowingAdvice");
+        System.out.println("-----");
+        System.out.println(accountList);
+        System.out.println("\n");
     }
 
     private void demoTheAfterReturningAdvice(AccountDao accountDao) {
         // call method to find the accounts
-        List<Account> accountList = accountDao.findAccounts();
+        List<Account> accountList = accountDao.findAccounts(false);
 
         // display the accounts
         System.out.println("\n\nMain Program: demoTheAfterReturningAdvice");
