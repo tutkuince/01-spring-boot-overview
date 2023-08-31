@@ -31,9 +31,15 @@ public class LoggingAspect {
     public void before(JoinPoint joinPoint) {
         // display method we are calling
         String method = joinPoint.getSignature().toShortString();
-        System.out.println("===>>> in @Before: calling method" + method);
+        logger.info("===>>> in @Before: calling method" + method);
 
         // display the arguments to the method
+        // get the arguments
+        Object[] args = joinPoint.getArgs();
 
+        // loop through and display args
+        for (Object arg : args) {
+            logger.info("===>>> argument: " + arg);
+        }
     }
 }
